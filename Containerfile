@@ -25,6 +25,7 @@ RUN echo "export BUILDAH_ISOLATION=chroot" >> /home/build/.bashrc
 # Use VFS because fuse does not work
 RUN mkdir -p /home/build/.config/containers \
 && (echo '[storage]';echo 'driver = "vfs"') > /home/build/.config/containers/storage.conf
+RUN echo "export STORAGE_DRIVER=vfs" >> /home/build/.bashrc
 
 # The buildah container will run as `build` user
 USER build
