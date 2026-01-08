@@ -14,19 +14,5 @@ LABEL org.opencontainers.image.vendor="chpc.utah.edu"
 LABEL org.opencontainers.image.version=${imageversion}
   
 # Set up subuid and subgid
-RUN touch /etc/subgid /etc/subuid \
-&& chmod g=u /etc/subgid /etc/subuid /etc/passwd \
-&& echo build:10000:65536 > /etc/subuid \
-&& echo build:10000:65536 > /etc/subgid
-
-# Use chroot because the default runc does not work when running rootless
-RUN echo "export BUILDAH_ISOLATION=chroot" >> /home/build/.bashrc
-
-# Use VFS because fuse does not work
-RUN mkdir -p /home/build/.config/containers \
-&& (echo '[storage]';echo 'driver = "vfs"') > /home/build/.config/containers/storage.conf
-RUN echo "export STORAGE_DRIVER=vfs" >> /home/build/.bashrc
-
-# The buildah container will run as `build` user
-USER build
-WORKDIR /home/build
+RUN echo -e "root:1:65535\nbuild:1:999\nbuild:1001:65535" > /etc/subuid && \
+    echo -e "root:1:65535\nbuild:1:999\nbuild:1001:65535" > /etc/subgid
