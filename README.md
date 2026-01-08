@@ -51,3 +51,4 @@ CHPC Staff
 ## Additional Resources
 
 * [Tutorial: Use Buildah in a rootless container with GitLab Runner Operator on OpenShift](https://docs.gitlab.com/ci/docker/buildah_rootless_tutorial/)
+* [apt-get not working with buildah in a container with id and group 1000:1000 (rootless mode) #3345](https://github.com/containers/buildah/issues/3345)
