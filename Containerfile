@@ -20,6 +20,9 @@ RUN echo -e "root:1:65536\nbuild:1:999\nbuild:1001:65536" > /etc/subuid && \
 # Use chroot because the default runc does not work when running rootless
 RUN echo "export BUILDAH_ISOLATION=chroot" >> /home/build/.bashrc
 
+# Do not start with user namespace
+RUN echo "export _BUILDAH_STARTED_IN_USERNS=" >> /home/build/.bashrc
+
 # Use VFS because fuse does not work
 RUN mkdir -p /home/build/.config/containers \
 && (echo '[storage]';echo 'driver = "vfs"') > /home/build/.config/containers/storage.conf
