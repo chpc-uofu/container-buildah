@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM quay.io/buildah/stable:v1.42.2
+FROM quay.io/buildah/stable:v1.43.4
 
 # Image build arguments:
 ARG imageversion="localdev"
