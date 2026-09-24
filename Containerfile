@@ -4,9 +4,12 @@ FROM quay.io/buildah/stable:v1.43.4
 # Image build arguments:
 ARG imageversion="localdev"
 
-ENV BUILDAH_ISOLATION=chroot        # Use chroot because the default runc does not work when running rootless
-ENV _BUILDAH_STARTED_IN_USERNS=""   # Do not start with user namespace
-ENV STORAGE_DRIVER=vfs              # Use VFS because fuse does not work
+# Use chroot because the default runc does not work when running rootless
+ENV BUILDAH_ISOLATION=chroot
+# Do not start with user namespace
+ENV _BUILDAH_STARTED_IN_USERNS=""
+# Use VFS because fuse does not work
+ENV STORAGE_DRIVER=vfs
 
 # Labels
 LABEL org.opencontainers.image.authors="UofU CHPC <helpdesk@chpc.utah.edu>"
