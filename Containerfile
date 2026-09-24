@@ -27,7 +27,3 @@ RUN mkdir -p /home/build/.config/containers \
 # The buildah container will run as `build` user
 USER build
 WORKDIR /home/build
-
-# The buildah container will run as `build` user
-USER build
-WORKDIR /home/build
